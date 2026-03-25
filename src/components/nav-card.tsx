@@ -1,33 +1,81 @@
-import Link from 'next/link';
-import type { LucideIcon } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
-import { ArrowRight } from 'lucide-react';
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 type NavCardProps = {
-  icon: LucideIcon;
   title: string;
   description: string;
   href: string;
+  imageSrc: string;      // ✅ Tile image from /public
+  bgImage?: string;      // ✅ Background image
   className?: string;
 };
 
-export function NavCard({ icon: Icon, title, description, href, className }: NavCardProps) {
+export function NavCard({
+  title,
+  description,
+  href,
+  imageSrc,
+  bgImage,
+  className,
+}: NavCardProps) {
   return (
-    <Link href={href} target="_blank" rel="noopener noreferrer" className="group block">
-      <Card className={cn(
-        "bg-card hover:bg-card/90 border-border hover:border-primary transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-primary/20 h-full",
-        className
-      )}>
-        <CardHeader className="p-6">
-          <div className="flex justify-between items-start mb-4">
-            <div className="p-3 bg-primary/10 rounded-lg">
-              <Icon className="w-8 h-8 text-primary" />
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block h-full"
+    >
+      <Card
+        className={cn(
+          "relative overflow-hidden border-border/50 transition-all duration-500",
+          "hover:border-primary/80 hover:-translate-y-2 hover:scale-[1.02]",
+          "shadow-xl hover:shadow-primary/30 bg-transparent",
+          className
+        )}
+      >
+        {/* ✅ Background image layer */}
+        {bgImage && (
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+            style={{ backgroundImage: `url(${bgImage})` }}
+          />
+        )}
+
+        {/* ✅ Premium overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 to-black/65 z-10" />
+
+        {/* ✅ Card Content */}
+        <CardHeader className="relative z-20 p-6 space-y-4">
+          <div className="flex items-start justify-between">
+            {/* ✅ Image instead of icon */}
+            <div className="relative w-14 h-14 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+              <Image
+                src={imageSrc}
+                alt={`${title} icon`}
+                fill
+                className="object-contain p-2"
+                priority
+              />
             </div>
-            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-transform group-hover:translate-x-1" />
+
+            <ArrowRight className="w-5 h-5 text-white/70 transition-all group-hover:text-primary group-hover:translate-x-1" />
           </div>
-          <CardTitle className="text-xl font-headline font-semibold text-foreground">{title}</CardTitle>
-          <CardDescription className="text-muted-foreground">{description}</CardDescription>
+
+          <CardTitle className="text-xl font-headline font-semibold text-white">
+            {title}
+          </CardTitle>
+
+          <CardDescription className="text-white/80">
+            {description}
+          </CardDescription>
         </CardHeader>
       </Card>
     </Link>
