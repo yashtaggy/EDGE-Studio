@@ -2,6 +2,7 @@ import Image from "next/image";
 import { NavCard } from "@/components/nav-card";
 import { ChatbotWidget } from "@/components/chatbot-widget";
 import EdgeBinocularAIButton from "@/components/ui/edge-binocular-ai-button";
+import Footer from "@/components/footer";
 
 const navItems = [
   {
@@ -99,6 +100,8 @@ export default function Home() {
 
       {/* Chatbot */}
       <ChatbotWidget />
+
+      <Footer />
     </div>
   );
 }
