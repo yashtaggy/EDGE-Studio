@@ -8,14 +8,14 @@ const navItems = [
   {
     title: "Artifacts",
     description: "Projects Transformed",
-    href: "https://crystal.ltimindtree.com/innovation-wall/latest-type_edge_radar_project#ss_idea_bundle_type_edge_radar_project=type_edge_radar_project&sort_type=ds_changed&sort_order=desc",
+    href: "https://crystal.ltm.com/innovation-wall/latest-type_edge_radar_project#ss_idea_bundle_type_edge_radar_project=type_edge_radar_project&sort_type=ds_changed&sort_order=desc",
     imageSrc: "/Artifacts_bg.png",
     bgImage: "/Button_bg.png",
   },
   {
     title: "Opportunity Tracker",
     description: "Capture. Track. Convert. Opportunities",
-    href: "https://ltimindtree.sharepoint.com/:l:/r/sites/EDGE2/Lists/EDGE?e=tcDPBq",
+    href: "https://ltimindtree.sharepoint.com/:l:/r/sites/EDGE2/Lists/EDGE?e=cbsO6W",
     imageSrc: "/tracker_bg.png",
     bgImage: "/Button_bg.png",
   },
@@ -29,7 +29,7 @@ const navItems = [
   {
     title: "Outcreate",
     description: "Analysis and Enablement",
-    href: "https://crystal.ltimindtree.com/innovation-wall/latest-type_egul_newsletter#ss_idea_bundle_type_egul_newsletter=type_egul_newsletter&sort_type=ds_changed&sort_order=desc",
+    href: "https://crystal.ltm.com/innovation-wall/latest-type_egul_newsletter#ss_idea_bundle_type_egul_newsletter=type_egul_newsletter&sort_type=ds_changed&sort_order=desc",
     imageSrc: "/outcreate_bg.png",
     bgImage: "/Button_bg.png",
   },
