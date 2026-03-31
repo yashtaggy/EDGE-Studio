@@ -7,7 +7,7 @@ import Footer from "@/components/footer";
 const navItems = [
   {
     title: "Artifacts",
-    description: "Projects Transformed",
+    description: "Knowledge Fabric Excellence ",
     href: "https://crystal.ltm.com/innovation-wall/latest-type_edge_radar_project#ss_idea_bundle_type_edge_radar_project=type_edge_radar_project&sort_type=ds_changed&sort_order=desc",
     imageSrc: "/Artifacts_bg.png",
     bgImage: "/Button_bg.png",
@@ -21,14 +21,14 @@ const navItems = [
   },
   {
     title: "EDGE Dashboard",
-    description: "Power BI Actionable Insights",
+    description: "Power BI RFQ Analysis",
     href: "https://app.powerbi.com/groups/me/reports/755a3799-ebea-4862-9c14-6493af1c6404/718f23bb040216b409ea?experience=power-bi",
     imageSrc: "/dashboard_bg.png",
     bgImage: "/Button_bg.png",
   },
   {
     title: "Outcreate",
-    description: "Analysis and Enablement",
+    description: "Data Value realization ",
     href: "https://crystal.ltm.com/innovation-wall/latest-type_egul_newsletter#ss_idea_bundle_type_egul_newsletter=type_egul_newsletter&sort_type=ds_changed&sort_order=desc",
     imageSrc: "/outcreate_bg.png",
     bgImage: "/Button_bg.png",
