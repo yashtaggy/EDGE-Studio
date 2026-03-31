@@ -77,7 +77,7 @@ export default function Home() {
 
         {/* Portal Title */}
         <h1 className="text-4xl md:text-5xl font-headline font-bold text-center text-primary">
-          EDGE Central Command Portal
+          EDGE Command Center 
         </h1>
 
         {/* EDGE Binocular AI Search */}

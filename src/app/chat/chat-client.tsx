@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Send,
@@ -24,6 +26,9 @@ export default function ChatClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const initialPrompt = searchParams.get("prompt");
+
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<any>(null);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -190,14 +195,63 @@ export default function ChatClient() {
                 )}
               </Avatar>
               <div
-                className={`p-5 rounded-3xl shadow-xl ${
-                  msg.role === "user"
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600"
-                    : "bg-gray-800/70 backdrop-blur-md"
-                }`}
-              >
-                {msg.content}
-              </div>
+  className={`p-5 rounded-3xl shadow-xl leading-relaxed ${
+    msg.role === "user"
+      ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+      : "bg-gray-800/70 backdrop-blur-md text-white"
+  }`}
+>
+  {msg.role === "agent" ? (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        h2: ({ children }) => (
+          <h2 className="text-lg font-semibold mt-4 mb-2 text-red-400">
+            {children}
+          </h2>
+        ),
+        h3: ({ children }) => (
+          <h3 className="text-base font-semibold mt-3 mb-1">
+            {children}
+          </h3>
+        ),
+        ul: ({ children }) => (
+          <ul className="list-disc ml-6 space-y-1">{children}</ul>
+        ),
+        ol: ({ children }) => (
+          <ol className="list-decimal ml-6 space-y-1">{children}</ol>
+        ),
+        li: ({ children }) => (
+          <li className="leading-relaxed">{children}</li>
+        ),
+        table: ({ children }) => (
+          <table className="border border-gray-700 my-4 w-full text-sm">
+            {children}
+          </table>
+        ),
+        th: ({ children }) => (
+          <th className="border border-gray-700 bg-gray-900 px-2 py-1 text-left">
+            {children}
+          </th>
+        ),
+        td: ({ children }) => (
+          <td className="border border-gray-700 px-2 py-1">
+            {children}
+          </td>
+        ),
+        blockquote: ({ children }) => (
+          <blockquote className="border-l-4 border-red-500 pl-4 italic text-gray-300 my-2">
+            {children}
+          </blockquote>
+        ),
+      }}
+    >
+      {msg.content}
+    </ReactMarkdown>
+  ) : (
+    <p>{msg.content}</p>
+  )}
+</div>
             </div>
           </div>
         ))}
