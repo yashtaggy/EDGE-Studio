@@ -1,17 +1,10 @@
-# Chat Bot UI Redesign Tasks
+# Chat Page Header and Back Button Update
 
-## Status: Completed ✅
+## Steps:
+- [x] 1. Create this TODO.md ✅
+- [x] 2. Edit src/app/chat/chat-client.tsx to add matching header with logos and absolute back button using router.push('/')
+- [x] 3. Update main content padding for header height
+- [ ] 4. Update TODO.md to mark step 2 complete ✅
+- [ ] 5. Test navigation locally
+- [ ] 6. Mark all complete and finish task
 
-✅ Plan approved by user  
-✅ TODO.md created/updated  
-✅ src/app/chat/page.tsx fully redesigned:
-   - Sticky gradient header with icon/branding  
-   - Enhanced messages: Avatars, gradient bubbles, fade/slide animations, empty state  
-   - Fixed bottom footer: Resizable Textarea, Send btn w/ loading spinner, Enter-to-send, Cmd+Enter newline  
-   - Auto-scroll, typing dots indicator, responsive/mobile-friendly  
-   - Preserved all original logic (initialPrompt auto-send, /api/chat)  
-
-**Testing:** Dev server ready to verify /chat (e.g., http://localhost:3000/chat).  
-**Demo:** Navigate to /chat?prompt=Hello to test initial message + input/response flow.
-
-Task complete!

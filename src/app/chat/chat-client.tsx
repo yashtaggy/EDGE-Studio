@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -11,7 +11,9 @@ import {
   User,
   Bot,
   Loader2,
+  ChevronLeft,
 } from "lucide-react";
+import Image from "next/image";
 
 type Message = {
   role: "user" | "agent";
@@ -20,6 +22,7 @@ type Message = {
 
 export default function ChatClient() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const initialPrompt = searchParams.get("prompt");
 
   const [messages, setMessages] = useState<Message[]>([]);
@@ -37,7 +40,7 @@ export default function ChatClient() {
     scrollToBottom();
   }, [messages, scrollToBottom]);
 
-  // ✅ Initial prompt (Strict‑Mode + production safe)
+  // Initial prompt (Strict‑Mode + production safe)
   useEffect(() => {
     if (!initialPrompt || hasRequested.current) return;
     hasRequested.current = true;
@@ -125,18 +128,48 @@ export default function ChatClient() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white flex flex-col relative">
+      {/* Header - Matching main page aesthetics */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
+          {/* Back Button */}
+          <Button
+            variant="ghost"
+            onClick={() => router.push('/')}
+            className="absolute top-6 left-6 z-[60] h-10 w-10 p-0 bg-background/95 backdrop-blur-sm border border-border/50 shadow-lg hover:bg-accent hover:shadow-xl rounded-xl transition-all duration-200"
+            size="sm"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 h-16 bg-black/80 backdrop-blur-md border-b border-gray-800 flex items-center px-6 shadow-lg">
-        <MessageCircle className="h-6 w-6 text-red-500 mr-2" />
-        <h1 className="text-xl font-bold">
-          Ask <span className="text-red-500">EDGE</span>
-        </h1>
+          {/* LEFT: LTM Logo */}
+          <div className="flex items-center ml-20 md:ml-24">
+            <Image
+              src="/LTM_logo.png"
+              alt="LTM Logo"
+              width={100}
+              height={35}
+              className="h-8 md:h-10 w-auto object-contain drop-shadow-sm"
+              priority
+            />
+          </div>
+
+          {/* RIGHT: EDGE Logo */}
+          <div className="flex items-center">
+            <Image
+              src="/EDGE_logo.png"
+              alt="EDGE Logo"
+              width={280}
+              height={130}
+              className="h-16 md:h-20 w-auto object-contain drop-shadow-md"
+              priority
+            />
+          </div>
+        </div>
       </header>
 
       {/* Messages */}
-      <main className="flex-1 overflow-y-auto px-6 py-8 space-y-6">
+      <main className="flex-1 overflow-y-auto px-6 pt-28 md:pt-32 pb-8 space-y-6">
         {messages.map((msg, index) => (
           <div
             key={index}
