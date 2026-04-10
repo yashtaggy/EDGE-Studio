@@ -11,7 +11,8 @@ export default function EdgeBinocularAIButton() {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && prompt.trim()) {
-      router.push(`/chat?prompt=${encodeURIComponent(prompt.trim())}`);
+      window.open('https://m365.cloud.microsoft/chat/?titleId=T_c51a20dd-173e-b921-6727-b83a315fcdb4&source=embedded-builder', '_blank');
+      setPrompt('');
     }
   };
 
